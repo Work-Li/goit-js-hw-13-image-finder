@@ -22,7 +22,7 @@ galleryEl.addEventListener('click', openBigImage);
 
 function onSearch(event) {
     event.preventDefault();
-    // clearGallery();
+    clearGallery();
     imagesApiService.query = event.currentTarget.query.value;
     imagesApiService.resetPage();
     
@@ -34,9 +34,10 @@ function onSearch(event) {
     imagesApiService
         .fetchImages()
         .then(images => {
-            clearGallery();
+            
             if (!images.length) {
                 hideLoadMoreBtn();
+                clearGallery();
                 onError('No images for this request');}
             appendImagesMarkup(images);
         })
@@ -53,6 +54,7 @@ function onLoadMore() {
         .then(images => {
             if(images.length === 0) {
                 hideLoadMoreBtn();
+                clearGallery();
                 onError("No more images");
             }
             loadBtnEl.classList.remove('disabled');
@@ -69,8 +71,8 @@ function appendImagesMarkup (images) {
 }
 
 function clearGallery() {
-    galleryEl.innerHTML = '';
-  }
+   galleryEl.innerHTML = '';
+  };
 
 function addBtnUp() {
     btnUpEl.classList.remove('hidden');
