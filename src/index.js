@@ -54,10 +54,8 @@ function onLoadMore() {
         .then(images => {
             if(images.length === 0) {
                 hideLoadMoreBtn();
-                clearGallery();
                 onError("No more images");
             }
-            loadBtnEl.classList.remove('disabled');
             appendImagesMarkup(images)});
     loadBtnEl.scrollIntoView({
         behavior: 'smooth',
