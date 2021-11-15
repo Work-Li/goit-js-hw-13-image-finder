@@ -26,7 +26,7 @@ function onSearch(event) {
     imagesApiService.query = event.currentTarget.query.value;
     imagesApiService.resetPage();
     
-    if (!imagesApiService.query) {
+    if (!imagesApiService.query.trim()) {
         onError('Please enter a correct request');
         hideLoadMoreBtn();
         return;
